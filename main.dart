@@ -1,15 +1,33 @@
-import "dart:math";
+/*
+https://www.codewars.com/kata/57a4d500e298a7952100035d/train/dart
+Date: 2023-08-06 16:31
+Title: Hex to Decimal
+Difficulty: 8 kyu
+Instructions:
+- Complete the function which converts hex number (given as a string)
+  to a decimal number.
+*/
 
 import "package:test/test.dart";
 
-int find(List<int> integers) => integers.firstWhere((element) =>
-    element % 2 != integers[Random().nextInt(integers.length)] % 2);
-
 void main() {
-  test('Example test 1', () {
-    expect(find([99, 77, 331, 717, 89, 22073, 8, 7, 101]), equals(8));
-  });
-  test('Example test 2', () {
-    expect(find([2254, 29, 98427000020]), equals(29));
+  group("Fixed tests", () {
+    test("Testing for 1", () {
+      expect(hexToDec("1"), equals(1));
+    });
+    test("Testing for a", () {
+      expect(hexToDec("a"), equals(10));
+    });
+    test("Testing for 10", () {
+      expect(hexToDec("10"), equals(16));
+    });
+    test("Testing for FF", () {
+      expect(hexToDec("FF"), equals(255));
+    });
+    test("Testing for -C", () {
+      expect(hexToDec("-C"), equals(-12));
+    });
   });
 }
+
+int hexToDec(String hexString) => int.parse(hexString, radix: 16);
